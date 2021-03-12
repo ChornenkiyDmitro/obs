@@ -13,6 +13,7 @@
     <string name="main_screen_profile_bottom">Profile</string>
     <string name="main_screen_people_bottom">People</string>
     <string name="main_screen_messages_bottom">Messages</string>
+    <string name="enter_the_pass">Enter the password you used\nto create your account</string>
 
 
 </resources>

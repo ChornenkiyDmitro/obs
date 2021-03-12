@@ -20,8 +20,13 @@ import com.example.splashscreen.DataBaseFile.DatabaseHelper;
 import com.example.splashscreen.DataBaseFile.User;
 import com.example.splashscreen.R;
 import com.example.splashscreen.onFragmentChangeListener;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FragmentSignIn extends Fragment  {
+
+
+    TextInputLayout emailError, passError;
+    String email, password;
     DatabaseHelper db;
     View view;
     onFragmentChangeListener listener;
@@ -80,35 +85,65 @@ button.setOnClickListener(new View.OnClickListener() {
 
 
     public void onSignIn() {
+
+        emailError = (TextInputLayout) view.findViewById(R.id.EmailError_singin);
+        passError = (TextInputLayout) view.findViewById(R.id.PasswordError_signin);
+        emailError.setError(null);
+        passError.setError(null);
+
+
+
         EditText editTextEmail = (EditText) view.findViewById(R.id.et_sign_in_email);
         EditText editTextPassword = (EditText) view.findViewById(R.id.et_sign_in_password);
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
 
 
         Boolean isUserExsists = db.checkUser(email, password);
         User user = new User();
         Log.d("IDdetails", String.valueOf(user.getId()));
 
+if (onFillFields() == true) {
+    if (isUserExsists == true) {
+        Intent HomePage = new Intent(getActivity(), MainScreenActivity.class);
+        Bundle b = new Bundle();
+        b.putString("textViewEmail", editTextEmail.getText().toString());
+        b.putString("textViewPassword", editTextPassword.getText().toString());
 
-        if (isUserExsists == true) {
-            Intent HomePage = new Intent(getActivity(), MainScreenActivity.class);
-            Bundle b = new Bundle();
-            b.putString("textViewEmail", editTextEmail.getText().toString());
-            b.putString("textViewPassword", editTextPassword.getText().toString());
+        String y = db.selectOneUserSendUserName(email, password);
+        int x = db.selectOneUserSendId(email, password);
+        Log.d("TAG", "ID =  " + x);
 
-            String y = db.selectOneUserSendUserName(email, password);
-            int x = db.selectOneUserSendId(email,password);
-            Log.d("TAG" , "ID =  " + x);
+        b.putString("textViewUsername", y);
+        b.putString("textViewId", String.valueOf(x));
 
-            b.putString("textViewUsername",y);
-            b.putString("textViewId", String.valueOf(x));
+        HomePage.putExtras(b);
+        startActivity(HomePage);
 
-            HomePage.putExtras(b);
-            startActivity(HomePage);
-        } else {
-            Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_LONG).show();
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStackImmediate();
+        } else if (listener != null) {
+            listener.onRout("finish");
         }
+
+    } else {
+        emailError.setError(" ");
+        passError.setError("Wrong password or e-mail");
+    }
+}
+    }
+
+    private boolean onFillFields(){
+        boolean flag = true;
+        if(email.equals("")){
+            emailError.setError("Fill  the field required");
+            flag = false;
+        }
+        if (password.equals("")){
+            passError.setError("Fill  the field required");
+            flag = false;
+        }
+        return  flag;
     }
 }
 

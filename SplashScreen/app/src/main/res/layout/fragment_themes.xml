@@ -16,4 +16,10 @@
         android:gravity="center"
         android:background="@android:color/holo_red_dark"/>
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gogog"
+        android:text="Log out"/>
 </FrameLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/view_params_45"
+        android:layout_height="@dimen/view_params_45"
+        android:scaleType="fitCenter"
+        android:layout_margin="@dimen/indentation_12"
+        android:id="@+id/iv_people"/>
+
+    <LinearLayout
+        android:layout_margin="@dimen/indentation_8"
+android:paddingRight="@dimen/indentation_130"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_people_info_list">
+<TextView
+    android:paddingBottom="@dimen/indentation_12"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tv_people_name"
+    android:text="New text"
+    android:textSize="@dimen/txt_size_16"
+    android:textStyle="normal"
+    android:fontFamily="sans-serif-medium"
+    android:textColor="@color/greyish_brow"/>
+
+        <TextView
+            android:paddingBottom="@dimen/indentation_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_people_job"
+            android:text="New text"
+            android:textColor="@color/greyish_brow"
+            android:textStyle="normal"
+            android:fontFamily="sans-serif"
+            android:textSize="@dimen/txt_size_14"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-7sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_people_place_of_living"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="@dimen/txt_size_12"
+            android:textColor="@color/greyish_brow"
+            android:text="New text"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="@dimen/view_params_14"
+        android:layout_marginRight="@dimen/indentation_6"
+        android:layout_width="@dimen/view_params_24"
+        android:layout_height="@dimen/view_params_20"
+        android:background="@drawable/ic_people_following"
+        android:id="@+id/iv_people_following"
+        />
+
+    <TextView
+        android:layout_marginTop="@dimen/view_params_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="@dimen/indentation_8"
+        android:text="FOLLOWING"
+        android:textColor="@color/soft_blue"
+        android:textSize="@dimen/txt_size_16"
+        android:textStyle="normal" />
+
+</LinearLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+</LinearLayout>

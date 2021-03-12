@@ -2,13 +2,11 @@ package com.example.splashscreen.DataBaseFile;
 
 public class User {
     private int id ;
-    private String userName ;
     private String password ;
     private String email ;
 
-    public User(int id, String userName, String password, String email) {
+    public User(int id, String password, String email) {
         this.id = id;
-        this.userName = userName;
         this.password = password;
         this.email = email;
     }
@@ -28,14 +26,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
@@ -58,7 +48,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';

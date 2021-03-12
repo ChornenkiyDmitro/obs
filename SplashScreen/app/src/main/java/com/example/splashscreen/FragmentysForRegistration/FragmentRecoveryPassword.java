@@ -14,9 +14,12 @@ import androidx.fragment.app.Fragment;
 import com.example.splashscreen.DataBaseFile.DatabaseHelper;
 import com.example.splashscreen.R;
 import com.example.splashscreen.onFragmentChangeListener;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FragmentRecoveryPassword extends Fragment {
 
+    TextInputLayout passError, passConfError;
+    String passwordConf, password;
     DatabaseHelper db;
     View view;
     onFragmentChangeListener listener;
@@ -58,19 +61,30 @@ db = new DatabaseHelper(getActivity());
         String email = bundle.getString("tag");
 
 
-        String password = getTrimValue(view.findViewById(R.id.et_rp_pass));
-        String passwordConf = getTrimValue(view.findViewById(R.id.et_rp_pass2));
+        passError = (TextInputLayout) view.findViewById(R.id.PasswordError_password_recovery);
+        passConfError = (TextInputLayout) view.findViewById(R.id.PasswordError_password_recovery_repeat);
+        passError.setError(null);
+        passConfError.setError(null);
+
+       password = getTrimValue(view.findViewById(R.id.et_rp_pass));
+         passwordConf = getTrimValue(view.findViewById(R.id.et_rp_pass2));
 
 
 
 
-        if (password.isEmpty() && passwordConf.isEmpty()) {
-            Toast.makeText(getActivity(), "fill all fields ", Toast.LENGTH_LONG).show();
+        if (password.isEmpty() || passwordConf.isEmpty()) {
+            if (password.equals("")){
+                passError.setError( "Fill  the field required");
+            }
+            if (passwordConf.equals("")){
+                passConfError.setError("Fill  the field required");
+            }
             return;
         }
 
         if (!password.contentEquals(passwordConf)) {
-            Toast.makeText(getActivity(), "password doesn't match", Toast.LENGTH_LONG).show();
+            passError.setError(" ");
+            passConfError.setError("Password mismatch");
             return;
         }
 
@@ -83,6 +97,7 @@ db = new DatabaseHelper(getActivity());
             }
         }
     }
+
 }
 
 

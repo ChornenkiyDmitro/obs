@@ -28,8 +28,11 @@ public class MainScreenActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        getSupportActionBar().hide();
+
         onTheme();
+
+
+
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bn_main_screen);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,9 +46,11 @@ public class MainScreenActivity extends AppCompatActivity  {
                         onProfile();
                         break;
                     case R.id.page_people:
+                        setTitle(R.string.main_screen_people_bottom);
                         onPeople();
                         break;
                     case R.id.page_messages:
+                       setTitle(R.string.main_screen_messages_bottom);
                         onMessages();
                         break;
                 }
@@ -55,24 +60,32 @@ public class MainScreenActivity extends AppCompatActivity  {
         }
 
 private void onTheme(){
+    setTitle(R.string.main_screen_themes_bottom);
+
     FragmentManager fm1 = getSupportFragmentManager();
     FragmentTransaction ft1 = fm1.beginTransaction();
     ft1.replace(R.id.fl_main_screen_case_fragment,new FragmentThemes());
     ft1.commit();
 }
     private void onProfile(){
+        setTitle(R.string.main_screen_profile_bottom);
+
         FragmentManager fm1 = getSupportFragmentManager();
         FragmentTransaction ft1 = fm1.beginTransaction();
         ft1.replace(R.id.fl_main_screen_case_fragment,new FragmentProfile());
         ft1.commit();
     }
     private void onPeople(){
+        setTitle(R.string.main_screen_people_bottom);
+
         FragmentManager fm1 = getSupportFragmentManager();
         FragmentTransaction ft1 = fm1.beginTransaction();
         ft1.replace(R.id.fl_main_screen_case_fragment,new FragmentPeople());
         ft1.commit();
     }
     private void onMessages(){
+        setTitle(R.string.main_screen_messages_bottom);
+
         FragmentManager fm1 = getSupportFragmentManager();
         FragmentTransaction ft1 = fm1.beginTransaction();
         ft1.replace(R.id.fl_main_screen_case_fragment,new FragmentMessages());

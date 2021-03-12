@@ -3,21 +3,21 @@
 <item
     android:id="@+id/page_themes"
     android:enabled="true"
-    android:icon="@drawable/ic_launcher_foreground"
+    android:icon="@drawable/ic_themes_active"
     android:title="@string/main_screen_themes_bottom"/>
     <item
         android:id="@+id/page_profile"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_profile_active"
         android:title="@string/main_screen_profile_bottom"/>
     <item
         android:id="@+id/page_people"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_people_active"
         android:title="@string/main_screen_people_bottom"/>
     <item
         android:id="@+id/page_messages"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_chats_active"
         android:title="@string/main_screen_messages_bottom"/>
 </menu>

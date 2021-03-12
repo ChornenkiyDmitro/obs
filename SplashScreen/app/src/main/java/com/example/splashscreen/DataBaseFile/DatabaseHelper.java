@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import static com.example.splashscreen.DataBaseFile.Constants.KEY_EMAIL;
 import static com.example.splashscreen.DataBaseFile.Constants.KEY_ID;
 import static com.example.splashscreen.DataBaseFile.Constants.KEY_PASSWORD;
-import static com.example.splashscreen.DataBaseFile.Constants.KEY_USERNAME;
 import static com.example.splashscreen.DataBaseFile.Constants.TABLE_NAME;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -29,7 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_REGISTER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME + "("
                 + Constants.KEY_ID + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_USERNAME + " TEXT,"
                 + KEY_PASSWORD + " TEXT,"
                 + Constants.KEY_EMAIL + " TEXT UNIQUE)";
         Log.d("TableCreated", "done");
@@ -47,7 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Constants.KEY_USERNAME, user.getUserName());
         values.put(KEY_PASSWORD, user.getPassword());
         values.put(Constants.KEY_EMAIL, user.getEmail());
 
@@ -61,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Constants.KEY_USERNAME, user.getUserName());
         values.put(KEY_PASSWORD, user.getPassword());
         values.put(Constants.KEY_EMAIL, user.getEmail());
         return db.update(Constants.TABLE_NAME, values, Constants.KEY_ID + "=?",
@@ -99,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String addUserName = "";
         while (cursor != null) {
             idNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Constants.KEY_ID)));
-            addUserName = cursor.getString(cursor.getColumnIndex(Constants.KEY_USERNAME));
+            addUserName = cursor.getString(cursor.getColumnIndex(KEY_EMAIL));
             Log.d("tagOneUser", Integer.toString(idNumber) );
             Log.d("tagOneUser", addUserName );
             break;
@@ -119,7 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String addUserName = "";
         while (cursor != null) {
             idNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Constants.KEY_ID)));
-            addUserName = cursor.getString(cursor.getColumnIndex(Constants.KEY_USERNAME));
+            addUserName = cursor.getString(cursor.getColumnIndex(KEY_EMAIL));
             Log.d("tagOneUser", Integer.toString(idNumber) );
             Log.d("tagOneUser", addUserName );
             break;
@@ -172,12 +168,6 @@ public void updatePassword(String email, String password){
         Cursor cursor = db.rawQuery(quString, null);
 
         cursor.moveToFirst();
-       // String count= cursor.getString(cursor.getColumnIndex(KEY_USERNAME));
-//        Log.d("Check", String.valueOf(cursor.getString(cursor.getColumnIndex(KEY_ID))));
-    //  Log.d("Check", String.valueOf(cursor.getString(cursor.getColumnIndex(KEY_USERNAME))));
-    //    Log.d("Check", String.valueOf(cursor.getString(cursor.getColumnIndex(KEY_EMAIL))));
-     //   Log.d("Check", String.valueOf(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD))));
-    //    Log.d("Check", String.valueOf(cursor.getCount()));
 
         if (cursor.getCount() != 1) {
             flag =  true;

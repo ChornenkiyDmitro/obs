@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.splashscreen.DataBaseFile.DatabaseHelper;
 import com.example.splashscreen.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FragmentEmailVerifyForChangePassword extends Fragment {
 
@@ -39,24 +40,26 @@ public class FragmentEmailVerifyForChangePassword extends Fragment {
 
     public void onCheck() {
 
+        TextInputLayout emailError = (TextInputLayout) view.findViewById(R.id.EmailError_password_recovery);
+        emailError.setError(null);
+
         EditText editTextEmail = (EditText) view.findViewById(R.id.et_rp_email);
         String email = editTextEmail.getText().toString().trim();
 
-        if (editTextEmail.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please fill your email", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (db.checkUserEmailForChangePass(editTextEmail.getText().toString().trim())) {
-            FragmentRecoveryPassword PasswordRecovery = new FragmentRecoveryPassword();
-            Bundle bundle = new Bundle();
-            bundle.putString("tag", email);
-            PasswordRecovery.setArguments(bundle);
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment_case,  PasswordRecovery).commit();
-
+        if (editTextEmail.getText().toString().isEmpty()) {
+            emailError.setError("Fill  the field required");
         } else {
-            Toast.makeText(getActivity(), getString(R.string.error_valid_email_password), Toast.LENGTH_LONG).show();
+            if (db.checkUserEmailForChangePass(editTextEmail.getText().toString().trim())) {
+                FragmentRecoveryPassword PasswordRecovery = new FragmentRecoveryPassword();
+                Bundle bundle = new Bundle();
+                bundle.putString("tag", email);
+                PasswordRecovery.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_case, PasswordRecovery).commit();
+
+            } else {
+                emailError.setError("Wrong e-mail");
+            }
         }
     }
 }

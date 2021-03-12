@@ -46,6 +46,8 @@ public class RegistrationActivity extends AppCompatActivity implements onFragmen
             case "forgot your password":
                   onForgotYourPassword();
                     break;
+            case "finish":
+                finishAffinity();
         }
     }
 

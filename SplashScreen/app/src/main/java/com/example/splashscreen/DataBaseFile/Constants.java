@@ -6,7 +6,6 @@ public class Constants {
         public static final String TABLE_NAME = "registerUser";
 
         public static final String KEY_ID = "id";
-        public static final String KEY_USERNAME = "userName";
         public static final String KEY_PASSWORD = "password";
         public static final String KEY_EMAIL = "email";
 
